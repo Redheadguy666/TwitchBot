@@ -25,8 +25,10 @@ class Bot():
 
 	def run(self):
 		while True:
-			#Протестировать!
-			response = self.socket.recv(1024).decode("utf-8")
+			try:
+				response = self.socket.recv(1024).decode("utf-8")
+			except Exception as E:
+				pass
 			if response == "PING :tmi.twitch.tv\r\n":
 				self.socket.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
 			else:
